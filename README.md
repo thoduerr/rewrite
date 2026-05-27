@@ -1,31 +1,26 @@
-# Rewrite Skills for Claude
+# Rewrite Skill for Claude
 
-Two skills that help you rewrite text so it sounds like a human wrote it — not an AI.
+A skill that rewrites text so it sounds like a human wrote it — not an AI.
 
-- **`rewrite`** — one rewrite in a tone you pick (or the original tone).
-- **`rewrite-variants`** — 2 or 3 alternative rewrites so you can compare and pick.
+Two modes in one skill:
+- **Single rewrite** — one cleaned-up version in a tone you pick (or the original tone).
+- **Variants** — 2 or 3 alternative versions in contrasting tones so you can compare and pick.
 
-Both work in English and German. Both auto-detect the input language. Both translate if you ask.
+Works in English and German. Auto-detects the input language. Translates if you ask.
 
 ---
 
 ## Installation
 
-1. You should have two folders next to this README:
-   ```
-   rewrite/
-     SKILL.md
-   rewrite-variants/
-     SKILL.md
-   ```
-2. Drop both folders into your skills directory for this project.
-3. New Claude conversations in this project will pick them up automatically. No restart needed.
+1. You should have a `rewrite/` folder next to this README, containing `SKILL.md`.
+2. Drop the folder into your skills directory for this project.
+3. New Claude conversations in this project will pick it up automatically.
 
-If you ever update them, just replace the folder. The skill name in the YAML frontmatter (`name: rewrite`) is what Claude uses internally, so don't rename the folders.
+The skill name in the YAML frontmatter (`name: rewrite`) is what Claude uses internally, so don't rename the folder.
 
 ---
 
-## Using `rewrite`
+## Single rewrite
 
 ### Quick reference
 
@@ -71,7 +66,7 @@ You can also skip the slash command. Phrasing like *"rewrite this to sound more 
 
 ---
 
-## Using `rewrite-variants`
+## Variants
 
 ### Quick reference
 
@@ -101,7 +96,7 @@ Feature ready. Test by Friday.
 
 ## What "sounds human" means here
 
-Both skills filter out the patterns that give AI writing away:
+The skill filters out the patterns that give AI writing away:
 
 - **No em-dash addiction.** One em-dash in a rewrite is the soft ceiling. No "It's not X — it's Y."
 - **No triadic flourishes.** "Clear, concise, and compelling" is the AI fingerprint. One adjective beats three.
@@ -110,7 +105,7 @@ Both skills filter out the patterns that give AI writing away:
 - **No wrap-up sentences.** Cuts "In conclusion," "Overall."
 - **Varied sentence length.** Short sentences allowed. Fragments occasionally fine.
 
-The skills also preserve all concrete facts — names, dates, numbers, URLs — across every rewrite.
+The skill also preserves all concrete facts — names, dates, numbers, URLs — across every rewrite.
 
 ---
 
@@ -118,40 +113,39 @@ The skills also preserve all concrete facts — names, dates, numbers, URLs — 
 
 **Order matters.** The command goes first, the text after. `/rewrite-professional` then your text. Putting the command at the end won't work reliably.
 
-**Already-good input.** The skill won't impose a rewrite for its own sake. If your text is already clean, expect small touches rather than a full makeover. That's intentional.
+**Already-good input.** The skill won't impose a rewrite for its own sake. If your text is already clean, expect small touches rather than a full makeover.
 
 **Code blocks survive.** If your input mixes prose and a code snippet, only the prose gets rewritten. The code is left alone.
 
 **Lists stay lists.** Bullet points and numbered lists keep their structure. Only the wording of each item changes.
 
-**Tone tuning.** If "friendly" feels too casual or "professional" feels too stiff for your context, just say so: *"a bit warmer than that"*, *"slightly less formal"*. The skill picks it up.
+**Tone tuning.** If "friendly" feels too casual or "professional" feels too stiff, just say so: *"a bit warmer than that"*, *"slightly less formal"*. The skill picks it up.
 
 ---
 
 ## Troubleshooting
 
 **The skill didn't trigger.**
-Make sure the slash command is at the very start of your message. If you're using a natural-language phrasing, include the word "rewrite" (or *umschreiben / überarbeiten*).
+Put the slash command at the very start of your message. For natural-language phrasing, include the word "rewrite" (or *umschreiben / überarbeiten*).
 
 **Output included a preamble like "Here's the rewrite:".**
-That's a skill miss. Send it back with: *"just the rewrite, no preamble."* If it happens often, the description in SKILL.md may need tightening.
+Send it back with: *"just the rewrite, no preamble."* If it happens often, the SKILL.md may need tightening.
 
 **Variants sound too similar.**
-Ask for sharper contrast: *"make them more different"* or specify tones directly: *"one punchy, one detailed."*
+Ask for sharper contrast: *"make them more different"*, or specify tones directly: *"one punchy, one detailed."*
 
 **German rewrite sounds stiff.**
-Tell the skill: *"natürlicher, weniger akademisch."* The most common slip is keeping `darüber hinaus` or `folglich` — both should disappear.
+Tell the skill: *"natürlicher, weniger akademisch."* The most common slip is keeping *darüber hinaus* or *folglich* — both should disappear.
 
 ---
 
-## Editing the skills
+## Editing the skill
 
-Open `SKILL.md` in either folder. The frontmatter (between the `---` markers) controls when the skill triggers. The body is the instructions Claude follows once triggered.
+Open `rewrite/SKILL.md`. The frontmatter (between the `---` markers) controls when the skill triggers. The body is the instructions Claude follows once triggered.
 
 Useful places to edit:
+- **Add a new tone suffix.** In *Step 1*, add a row to the single-rewrite command table.
+- **Adjust the AI-tell list.** The "Sound human → Avoid" block and the Step 5 self-check list. Add words or constructions you personally want filtered.
+- **Change the default variant count.** In *Step 1*, adjust the variants count table.
 
-- **Add a new tone suffix.** In `rewrite/SKILL.md`, add a row to the command table in *Step 1*.
-- **Adjust the AI-tell list.** Both skills have an "Avoid" block. Add words or constructions you personally want filtered.
-- **Change the default variant count.** In `rewrite-variants/SKILL.md`, adjust the count in *Step 1*.
-
-After editing, replace the folder in your skills location. Changes take effect on the next conversation.
+After editing, replace the folder. Changes take effect on the next conversation.
