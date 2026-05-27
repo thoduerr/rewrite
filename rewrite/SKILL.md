@@ -1,18 +1,13 @@
 ---
 name: rewrite
 description: >
-  Rewrites text so it sounds human — natural rhythm, no AI tells. Produces a single
-  rewrite (default) or multiple stylistic variants depending on the command.
-  Single-rewrite triggers: /rewrite, /rewrite-professional, /rewrite-friendly,
-  /rewrite-motivating, or any /rewrite- command with a style suffix (/rewrite-casual,
-  /rewrite-concise, /rewrite-formal, /rewrite-knapp, etc.). Also natural phrasing like
-  "rewrite this", "polish this", "make this more professional", "friendlier", or
-  German equivalents ("umschreiben", "überarbeiten", "professioneller", "freundlicher",
-  "motivierender"). Variants triggers: /rewrite-variants, /rewrite-options, /rewrite-2,
-  /rewrite-3, or phrases like "give me a few versions", "different variants",
-  "verschiedene Versionen", "mehrere Varianten", "ein paar Varianten". Default to 2
-  variants; produce 3 only when explicitly asked. Always trigger on rewrite requests,
-  even one-liners. Auto-detects input language; translates if the user asks.
+  Rewrites text so it sounds human — no AI tells. Single rewrite (default) or
+  multiple stylistic variants. Triggers on /rewrite and any /rewrite-<suffix>
+  (e.g. -professional, -friendly, -concise, -variants, -3, -en, -de), and on
+  natural phrasing like "rewrite this", "polish this", "make this friendlier",
+  "give me a few versions", or German equivalents ("umschreiben",
+  "überarbeiten", "freundlicher", "mehrere Varianten"). Auto-detects language;
+  translates on request.
 ---
 
 # Rewrite
