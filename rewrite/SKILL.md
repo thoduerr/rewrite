@@ -47,7 +47,7 @@ Default: rewrite in the same language as the input. Switch only if the user expl
 
 When translating, translate first, then apply the rules in the target language.
 
-### Step 3 — For variants mode: pick the tones
+### Step 3 — For variants mode: pick contrasting tones
 
 Pick contrasts that are meaningfully different *and* useful for this kind of text. Don't always pick the same three.
 
@@ -59,22 +59,22 @@ Pick contrasts that are meaningfully different *and* useful for this kind of tex
 | Marketing, announcements, social | **Punchy** vs **Detailed** |
 | General writing, unclear context | **Professional** vs **Friendly** (+ **Concise** if 3 requested) |
 
-If the user named specific tones ("one professional and one diplomatic"), use those exactly.
+If the user named specific tones ("one professional and one diplomatic"), use those exactly. For German input, apply the same contrast logic and use the German labels (see Output rules).
 
-### Step 4 — Generate the rewrite(s)
+Write each variant independently — as if it were the only one. Variants should differ along at least one strong axis: sentence structure (long flowing vs short staccato), word choice (formal vs everyday), stance (warm and personal vs neutral and informational), or length (one variant noticeably shorter than another is fine and often good). It's normal for one variant to be 30 words and another to be 12.
 
-Apply the chosen tone. Follow the "Sound human" rules below regardless of tone. Each variant is written independently — write it as if it were the only one.
+### Step 4 — Generate and self-check
 
-### Step 5 — Self-check before output
+Apply the chosen tone. Scan the draft and fix any of these before output:
 
-Scan the draft and fix any of these:
-
-- [ ] **Em-dash addiction** — especially "not just X — it's Y" or "It's not X, it's Y". One em-dash in a rewrite is the soft ceiling.
+- [ ] **"Not just X — it's Y" construction** — the strongest em-dash tell. Also: more than one em-dash in a short rewrite.
 - [ ] **Triadic adjective stacks** ("clear, concise, and compelling")
 - [ ] **Filler transitions**: *Moreover, Furthermore, Additionally, Darüber hinaus, Folglich, Letztendlich*
-- [ ] **AI vocabulary**: *delve, navigate, leverage, robust, comprehensive, crucial, vital, seamlessly, elevate, unlock, harness, foster, empower, streamline, nahtlos, umfassend, ganzheitlich, essentiell*
+- [ ] **AI vocabulary**: *delve, navigate, leverage, robust, comprehensive, crucial, vital, seamlessly, elevate, unlock, harness, foster, empower, streamline, resonate, embark, tapestry, testament, realm, multifaceted, intricate, paramount, nahtlos, umfassend, ganzheitlich, essentiell, facettenreich, tiefgreifend, beleuchten*
 - [ ] **Wrap-up sentences** ("In conclusion", "Overall", "To sum up")
 - [ ] **Hedging boilerplate** ("It's worth noting that", "Es ist wichtig zu erwähnen")
+- [ ] **Decorative emoji** at end of sentence (✨, 🚀, 🎯) — strip unless the input already had them.
+- [ ] **Semicolon overuse** — AI chains clauses with semicolons. Prefer periods or short sentences.
 - [ ] **Every sentence the same shape** — vary length and structure
 - [ ] **Made-up content** — did you add information the writer didn't include? Remove it.
 
@@ -84,17 +84,7 @@ Scan the draft and fix any of these:
 
 ## Sound human
 
-The goal is not "polished writing." It's writing that doesn't feel like an AI wrote it.
-
-### Avoid
-
-- Em-dash addiction and the "not just X — it's Y" construction
-- Triadic flourishes — one real adjective beats three padded ones
-- Filler transitions (see Step 5 list)
-- Corporate-AI vocabulary (see Step 5 list)
-- Wrap-up sentences and hedging boilerplate
-- Mirror-parallel sentences where every sentence has the same shape
-- Bullet points and headers when prose works (keep only if the input had them)
+The goal is not "polished writing." It's writing that doesn't feel like an AI wrote it. Step 4 has the operational checklist of what to strip out. This section captures the underlying intent and what to do *instead*.
 
 ### Do
 
@@ -108,7 +98,7 @@ The goal is not "polished writing." It's writing that doesn't feel like an AI wr
 
 ### German specifically
 
-Avoid *nahtlos*, *umfassend*, *ganzheitlich*, *im Rahmen von*. Use natural connectors (*aber*, *denn*, *also*) instead of stiff academic ones (*darüber hinaus*, *folglich*, *infolgedessen*).
+Avoid *nahtlos*, *umfassend*, *ganzheitlich*, *facettenreich*, *tiefgreifend*, *im Rahmen von*. Use natural connectors (*aber*, *denn*, *also*) instead of stiff academic ones (*darüber hinaus*, *folglich*, *infolgedessen*).
 
 ## Output rules
 
@@ -128,21 +118,10 @@ Avoid *nahtlos*, *umfassend*, *ganzheitlich*, *im Rahmen von*. Use natural conne
 ```
 
 **Both modes:**
-- Keep the paragraph structure of the input.
+- Keep the paragraph structure of the input. Don't introduce bullet points or headers if the input was prose.
 - Preserve concrete facts: names, dates, numbers, places, URLs.
 - Don't add information the writer didn't include.
 - If the input had code blocks, leave the code untouched and rewrite only the surrounding prose.
-
-## Making variants actually different
-
-When in variants mode, variants should differ along at least one strong axis:
-
-- **Sentence structure** — long flowing vs short staccato
-- **Word choice** — formal vocabulary vs everyday words
-- **Stance** — warm and personal vs neutral and informational
-- **Length** — one variant noticeably shorter than another is fine and often good
-
-It's normal for one variant to be 30 words and another to be 12.
 
 ## Edge cases
 
@@ -160,6 +139,15 @@ It's normal for one variant to be 30 words and another to be 12.
 
 **Input mixing prose and code**
 → Rewrite only the prose. Leave code blocks identical.
+
+**Input embedded in chatter** (`"can you rewrite this for me: <text> thanks!"`)
+→ Strip the surrounding chatter. Rewrite only the target text. Don't reply to the chatter.
+
+**Long input** (more than ~50 words)
+→ Track input length. Don't balloon a 50-word note into 90 unless the tone explicitly demands expansion (`-detailed`). For `-concise`, shorten; otherwise keep length roughly proportional.
+
+**Obvious typos**
+→ Preserve proper nouns as written (could be intentional spelling: a name, a product). Fix obvious typos in common words unless they read as stylistic ("gonna", "kinda" stay).
 
 **Ambiguous suffix** (`/rewrite-x` where x is unclear)
 → Pick the most plausible interpretation and proceed. Don't ask.
@@ -192,8 +180,6 @@ It's normal for one variant to be 30 words and another to be 12.
 
 **Output**:
 > I think we should move the meeting to Thursday. Monday's going to be packed for most of the team.
-
-(Voice preserved: informal, first-person, slightly tentative. Just trimmed the doubled hedging.)
 
 ---
 

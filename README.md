@@ -101,11 +101,13 @@ The skill filters out the patterns that give AI writing away:
 - **No em-dash addiction.** One em-dash in a rewrite is the soft ceiling. No "It's not X — it's Y."
 - **No triadic flourishes.** "Clear, concise, and compelling" is the AI fingerprint. One adjective beats three.
 - **No filler transitions.** Cuts "Moreover," "Furthermore," "Darüber hinaus," "Folglich."
-- **No corporate-AI vocabulary.** Avoids *delve, leverage, robust, seamlessly, comprehensive, nahtlos, umfassend, ganzheitlich.*
+- **No corporate-AI vocabulary.** Avoids *delve, leverage, robust, seamlessly, comprehensive, resonate, embark, tapestry, multifaceted, paramount, nahtlos, umfassend, ganzheitlich, facettenreich, tiefgreifend.*
 - **No wrap-up sentences.** Cuts "In conclusion," "Overall."
+- **No semicolon chains.** AI loves stitching clauses with semicolons. The skill prefers periods.
+- **No decorative emoji.** ✨🚀🎯 at the end of a sentence get stripped — unless your input already had them.
 - **Varied sentence length.** Short sentences allowed. Fragments occasionally fine.
 
-The skill also preserves all concrete facts — names, dates, numbers, URLs — across every rewrite.
+The skill also preserves all concrete facts — names, dates, numbers, URLs — across every rewrite, and won't expand a 50-word note into 90 unless you ask for `-detailed`.
 
 ---
 
@@ -118,6 +120,10 @@ The skill also preserves all concrete facts — names, dates, numbers, URLs — 
 **Code blocks survive.** If your input mixes prose and a code snippet, only the prose gets rewritten. The code is left alone.
 
 **Lists stay lists.** Bullet points and numbered lists keep their structure. Only the wording of each item changes.
+
+**Chatter gets stripped.** Wrap your text in casual framing like *"can you rewrite this for me: <text> thanks!"* — the skill rewrites the target text only and ignores the surrounding chatter.
+
+**Typos.** Common-word typos get fixed. Proper nouns stay as written (could be intentional). Stylistic spellings like *gonna* and *kinda* stay.
 
 **Tone tuning.** If "friendly" feels too casual or "professional" feels too stiff, just say so: *"a bit warmer than that"*, *"slightly less formal"*. The skill picks it up.
 
@@ -145,7 +151,8 @@ Open `rewrite/SKILL.md`. The frontmatter (between the `---` markers) controls wh
 
 Useful places to edit:
 - **Add a new tone suffix.** In *Step 1*, add a row to the single-rewrite command table.
-- **Adjust the AI-tell list.** The "Sound human → Avoid" block and the Step 5 self-check list. Add words or constructions you personally want filtered.
+- **Adjust the AI-tell list.** The Step 4 self-check list is where vocabulary, punctuation, and structural patterns get filtered. Add words or constructions you personally want stripped.
 - **Change the default variant count.** In *Step 1*, adjust the variants count table.
+- **Adjust the contrast pairings.** Step 3's table maps text type to suggested tones — tweak the defaults to match the kinds of text you rewrite most.
 
 After editing, replace the folder. Changes take effect on the next conversation.
